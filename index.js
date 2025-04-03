@@ -1,13 +1,24 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
-const PORT = 3000;
+const apiRoutes = require('./routes/api');
 
-// Middleware to parse JSON
+const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('Hello, BEV2!');
+  res.send('Hello, BEV212113!');
+});
+
+// Use API routes
+app.use('/api', apiRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start the server

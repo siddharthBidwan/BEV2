@@ -11,11 +11,14 @@ COPY ./package*.json ./
 # Install dependencies
 RUN npm install
 
+# Install nodemon globally
+RUN npm install -g nodemon
+
 # Copy the rest of the application code to /app
 COPY . .
 
 # Expose the application port
 EXPOSE 3000
 
-# Command to run the application
-CMD ["node", "index.js"]
+# Use nodemon to watch for file changes
+CMD ["nodemon", "index.js"]
