@@ -1,0 +1,23 @@
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-south1-docker.pkg.dev/stunning-flight-455711-f8/bev2-repo/bev2-app:latest', '.']
+
+  # Step 2: Push the Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-south1-docker.pkg.dev/stunning-flight-455711-f8/bev2-repo/bev2-app:latest']
+
+  # Step 3: Deploy the image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - bev2-app
+      - --image
+      - asia-south1-docker.pkg.dev/stunning-flight-455711-f8/bev2-repo/bev2-app:latest
+      - --platform
+      - managed
+      - --region
+      - us-central1
+      - --allow-unauthenticated
