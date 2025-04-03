@@ -1,0 +1,14 @@
+{
+  "name": "bev2",
+  "version": "1.0.0",
+  "description": "A basic Node.js backend application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
