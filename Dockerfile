@@ -1,5 +1,5 @@
-# Use the official Node.js image as the base image
-FROM node:16
+# Use the official Node.js 18 image as the base image
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,11 +8,11 @@ WORKDIR /app
 # Copy package.json and package-lock.json from the project root to /app
 COPY ./package*.json ./
 
+# Copy the Firebase configuration file to /app
+COPY ./galiv1-firebase-adminsdk.json ./
+
 # Install dependencies
 RUN npm install
-
-# Install nodemon globally
-RUN npm install -g nodemon
 
 # Copy the rest of the application code to /app
 COPY . .
@@ -20,5 +20,5 @@ COPY . .
 # Expose the application port
 EXPOSE 3000
 
-# Use nodemon to watch for file changes
-CMD ["nodemon", "index.js"]
+# Start the application
+CMD ["npm", "start"]

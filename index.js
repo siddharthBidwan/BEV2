@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.get('/firebase-example', async (req, res) => {
   try {
     const db = firebaseAdmin.firestore();
-    const doc = await db.collection('exampleCollection').doc('exampleDoc').get();
+    const doc = await db.collection('ads').doc('9FXy4aqM3GhgaoBC7IFv').get();
     if (!doc.exists) {
       return res.status(404).json({ message: 'Document not found' });
     }

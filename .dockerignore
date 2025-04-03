@@ -1,2 +1,4 @@
 node_modules
 npm-debug.log
+
+!galiv1-firebase-adminsdk.json
